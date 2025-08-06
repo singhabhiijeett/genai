@@ -57,19 +57,6 @@ export default function ChatWithDimpsy() {
     }
   }, [messages]);
 
-  // Scroll to bottom when new messages arrive
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  // Scroll to bottom on initial load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      messagesEndRef.current?.scrollIntoView({ behavior: "auto" });
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   const handleSendMessage = async () => {
     if (!inputMessage.trim()) return;
 
@@ -87,7 +74,7 @@ export default function ChatWithDimpsy() {
 
     try {
       // Call API with full message history
-      const response = await fetch("/api/chat-with-ex-girlfriend", {
+      const response = await fetch("/api/chat-with-dimpsy", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -181,7 +168,7 @@ export default function ChatWithDimpsy() {
           </button>
         </div>
 
-        <div className="h-[calc(100vh-280px)] overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-4 mb-4">
+        <div className="h-[calc(100vh-320px)] overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-4 mb-4">
           <div className="flex flex-col gap-4">
             {messages.map((message, index) => (
               <div
