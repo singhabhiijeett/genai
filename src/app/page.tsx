@@ -121,6 +121,12 @@ export default function Home() {
             <span className="relative z-10">Start Learning</span>
             <span className="absolute w-0 h-0 rounded-full bg-white opacity-10 group-hover:w-32 group-hover:h-32 -left-2 -top-2 transition-all duration-700 ease-out"></span>
           </Link>
+          <Link
+            href="/how-llm-works"
+            className="rounded-lg bg-[#1c1f2a]/50 border border-[#353945] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-[#1c1f2a]/80"
+          >
+            <span className="relative z-10">LLM Reality Check</span>
+          </Link>
         </div>
       </main>
       <Footer />

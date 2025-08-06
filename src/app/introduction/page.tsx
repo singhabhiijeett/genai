@@ -422,25 +422,19 @@ export default function Introduction() {
         </div>
 
         {/* CTA Section */}
-        {/* <div className="text-center">
+        <div className="text-center">
           <p className="text-xl text-gray-300 mb-6">
-            Ready to dive deeper into how generative AI works?
+            Ready to dive deeper into how LLMs really work?
           </p>
           <div className="flex gap-4 justify-center">
             <Link
-              href="/foundations"
+              href="/how-llm-works"
               className="rounded-lg bg-gradient-to-r from-red-400 to-red-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20"
             >
-              AI Foundations
-            </Link>
-            <Link
-              href="/transformers"
-              className="rounded-lg bg-[#1c1f2a]/50 border border-[#353945] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-[#1c1f2a]/80"
-            >
-              Explore Transformers
+              LLM Reality Check
             </Link>
           </div>
-        </div> */}
+        </div>
       </div>
 
       <Footer />
