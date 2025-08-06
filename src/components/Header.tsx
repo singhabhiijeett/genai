@@ -17,6 +17,12 @@ export default function Header() {
         >
           Introduction
         </Link>
+        <Link
+          href="/chat-with-dimpsy"
+          className="text-gray-300 hover:text-red-400 transition-colors"
+        >
+          Chat with Dimpsy
+        </Link>
       </nav>
     </header>
   );
