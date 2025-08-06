@@ -18,6 +18,12 @@ export default function Header() {
           Introduction
         </Link>
         <Link
+          href="/building-ai-chat-bots"
+          className="text-gray-300 hover:text-red-400 transition-colors"
+        >
+          Building AI Chatbots
+        </Link>
+        <Link
           href="/chat-with-dimpsy"
           className="text-gray-300 hover:text-red-400 transition-colors"
         >
