@@ -145,12 +145,12 @@ export default function ChatWithDimpsy() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] p-8 pb-20">
-      <div className="max-w-6xl w-full mx-auto px-4">
+    <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] px-4 sm:px-6 md:px-8 pb-24 pt-8">
+      <div className="max-w-6xl w-full mx-auto">
         <Header />
       </div>
-      <main className="flex-grow flex flex-col max-w-5xl mx-auto w-full px-4 py-8">
-        <div className="flex items-center justify-between mb-6">
+      <main className="flex-grow flex flex-col max-w-5xl mx-auto w-full px-0 sm:px-4 py-6 sm:py-8">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
           <div className="flex items-center gap-2">
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center shadow-lg shadow-red-500/20">
               <RiHeartsFill className="text-white text-xl" />
@@ -168,7 +168,7 @@ export default function ChatWithDimpsy() {
           </button>
         </div>
 
-        <div className="h-[calc(100vh-320px)] overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-4 mb-4">
+        <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-3 sm:p-4 mb-3 sm:mb-4 overscroll-contain">
           <div className="flex flex-col gap-4">
             {messages.map((message, index) => (
               <div
@@ -233,7 +233,12 @@ export default function ChatWithDimpsy() {
           </div>
         </div>
 
-        <div className="flex gap-3 items-center sticky bottom-0">
+        <div
+          className="flex gap-2 sm:gap-3 items-center sticky bottom-0 z-10 rounded-xl border border-transparent bg-gradient-to-t from-[#0f1117] via-[#0f1117]/90 to-transparent pb-3 pt-2"
+          style={{
+            paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.25rem)",
+          }}
+        >
           <div className="flex-grow relative">
             <textarea
               value={inputMessage}
@@ -262,7 +267,7 @@ export default function ChatWithDimpsy() {
           </button>
         </div>
 
-        <div className="flex items-center justify-center mt-3 gap-1.5">
+        <div className="flex items-center justify-center mt-2 sm:mt-3 gap-1.5">
           <div className="h-0.5 w-5 bg-[#353945] rounded-full"></div>
           <p className="text-xs text-gray-500 text-center">
             Chat with Dimpsy, your virtual Gen-Z girlfriend. Your chat history

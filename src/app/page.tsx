@@ -19,11 +19,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="font-sans min-h-screen bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] text-white p-8 pb-20 flex flex-col">
+    <div className="font-sans min-h-screen bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] text-white pb-24 pt-16 px-4 sm:px-6 md:px-8 flex flex-col">
       <div className="max-w-6xl w-full mx-auto">
         <Header />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center max-w-6xl mx-auto">
+      <main className="flex-1 flex flex-col items-center justify-center max-w-6xl mx-auto w-full px-0 sm:px-4">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
@@ -36,7 +36,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full my-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 w-full my-8 sm:my-12">
           {/* Feature Card 1 */}
           <div className="bg-[#1c1f2a]/50 p-6 rounded-xl border border-[#353945] backdrop-blur-sm hover:transform hover:scale-[1.02] transition-all duration-300 hover:shadow-red-500/10 hover:shadow-lg">
             <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center mb-4">
@@ -113,7 +113,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex gap-6 items-center flex-col sm:flex-row">
+        <div className="flex gap-4 sm:gap-6 items-center flex-col sm:flex-row">
           <Link
             href="/introduction"
             className="rounded-lg bg-gradient-to-r from-red-400 to-red-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 relative overflow-hidden group"
