@@ -28,7 +28,7 @@ export default function CursorAgent() {
     if (!prompt.trim()) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/cursor", {
+      const res = await fetch("/api/website-builder", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt }),
@@ -80,9 +80,9 @@ export default function CursorAgent() {
       </div>
 
       <div className="rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-3 sm:p-4 mb-4">
-        <div className="flex gap-2 sm:gap-3 items-center">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3">
           <input
-            value={prompt}
+            value={prompt || ""}
             onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter" && !e.shiftKey) {
@@ -91,12 +91,12 @@ export default function CursorAgent() {
               }
             }}
             placeholder="Describe the website (e.g., 'landing page for a coffee shop with hero, features, contact form')"
-            className="flex-1 h-12 rounded-2xl border border-[#353945] bg-[#0f1117]/70 text-gray-200 px-4 outline-none focus:ring-1 focus:ring-red-500"
+            className="w-full flex-1 h-12 py-4 sm:py-0 rounded-2xl border border-[#353945] bg-[#0f1117]/70 text-gray-200 px-4 outline-none focus:ring-1 focus:ring-red-500"
           />
           <button
             onClick={generate}
             disabled={loading || !prompt.trim()}
-            className={`px-4 h-12 rounded-2xl ${
+            className={`w-full sm:w-auto px-4 h-12 rounded-2xl ${
               loading || !prompt.trim()
                 ? "bg-[#353945] text-gray-500"
                 : "bg-gradient-to-r from-red-400 to-red-600 text-white hover:shadow-lg hover:shadow-red-500/30"
@@ -136,7 +136,7 @@ export default function CursorAgent() {
               </button>
             </div>
           </div>
-          <pre className="flex-1 overflow-auto p-3 text-xs sm:text-sm text-gray-200">
+          <pre className="flex-1 overflow-auto p-3 text-xs sm:text-sm text-gray-200 min-h-[240px] lg:min-h-[360px]">
             <code>{html || "/* Generated HTML will appear here */"}</code>
           </pre>
           {loading && (
@@ -169,10 +169,10 @@ export default function CursorAgent() {
               title="preview"
               src={previewUrl}
               sandbox="allow-scripts allow-forms"
-              className="flex-1 min-h-[360px] bg-white"
+              className="w-full h-[50vh] sm:h-[60vh] lg:h-[65vh] bg-white"
             />
           ) : (
-            <div className="flex-1 min-h-[360px] flex  justify-center text-gray-500 text-sm">
+            <div className="flex items-center justify-center h-[40vh] sm:h-[50vh] lg:h-[65vh] text-gray-500 text-sm">
               Your preview will appear here
             </div>
           )}
