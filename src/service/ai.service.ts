@@ -186,4 +186,46 @@ export class AIService {
 
     return "I reached the maximum number of tool-call steps. Please ask again with more specifics.";
   }
+
+  // --- Cursor Agent helpers ---
+  // Normalize a model response into a full HTML document
+  static extractHtmlDocument(text: string): string {
+    if (!text) return "";
+    const fence = text.match(/```(?:html|HTML)?\n([\s\S]*?)```/);
+    const raw = fence ? fence[1] : text;
+    const cleaned = raw.trim();
+    if (/<!doctype html>/i.test(cleaned) || /<html[\s>]/i.test(cleaned)) {
+      return cleaned;
+    }
+    return `<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1" />\n  <title>AI Generated Site</title>\n  <style>\n    :root{color-scheme: light dark}\n    *{box-sizing:border-box}\n    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}\n    .container{max-width:1200px;margin:0 auto;padding:1rem}\n  </style>\n</head>\n<body>\n  <div class="container">${cleaned}</div>\n</body>\n</html>`;
+  }
+
+  // Generate a single-file, runnable HTML document for the Cursor agent
+  static async generateWebsiteHtml(
+    prompt: string,
+    options?: { model?: string; systemInstruction?: string }
+  ): Promise<string> {
+    const ai = new GoogleGenAI({});
+    const model = options?.model ?? "gemini-2.5-flash";
+    const systemInstruction =
+      options?.systemInstruction ??
+      `
+You are a senior front-end engineer. Generate a COMPLETE, runnable single HTML file that implements the user's request.
+Rules:
+- Output ONLY the HTML document (no markdown fences or explanations).
+- Use inline <style> and <script>; no external JS frameworks.
+- Keep JS minimal and safe; avoid network calls. Use placeholder assets where needed.
+- Make it responsive and accessible (semantic tags, aria where appropriate).
+- Avoid references to remote images; use inline SVG or simple shapes.
+`;
+
+    const result = await ai.models.generateContent({
+      model,
+      contents: [{ role: "user", parts: [{ text: prompt.trim() }] }],
+      config: { systemInstruction },
+    });
+
+    const text = (result as unknown as { text?: string }).text || "";
+    return AIService.extractHtmlDocument(text);
+  }
 }

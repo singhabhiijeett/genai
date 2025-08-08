@@ -49,6 +49,12 @@ export default function Header() {
           Chat with Dimpsy
         </Link>
         <Link
+          href="/website-builder"
+          className="text-gray-300 hover:text-red-400 transition-colors"
+        >
+          Website Builder AI Agent
+        </Link>
+        <Link
           href="/ai-agent"
           className="text-gray-100 bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 px-3 py-1.5 rounded-lg hover:from-red-500/30 hover:to-red-600/30 transition-colors"
         >
@@ -97,6 +103,13 @@ export default function Header() {
               className="px-3 py-3 rounded-lg text-gray-200 hover:bg-[#1c1f2a]"
             >
               Chat with Dimpsy
+            </Link>
+            <Link
+              href="/website-builder"
+              onClick={closeMenu}
+              className="px-3 py-3 rounded-lg text-gray-200 hover:bg-[#1c1f2a]"
+            >
+              Website Builder AI Agent
             </Link>
             <Link
               href="/ai-agent"
