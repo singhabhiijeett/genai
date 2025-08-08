@@ -24,7 +24,7 @@ export default function HowLLMWorks() {
     <div className="font-sans min-h-screen bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] text-white p-8 pb-20">
       <div className="max-w-5xl mx-auto">
         <Header />
-        <div className="bg-[#1c1f2a]/60 p-8 rounded-xl border border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
+        <div>
           {/* Main Content */}
           <div className="mb-12 text-center mt-8">
             <Link
@@ -46,7 +46,7 @@ export default function HowLLMWorks() {
           </div>
 
           {/* Introduction */}
-          <div className="bg-[#1c1f2a]/60 p-8 rounded-xl border border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
+          <div className="sm:bg-[#1c1f2a]/60 p-2 sm:p-8 rounded-xl sm:border sm:border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
             <h2 className="text-2xl font-semibold mb-4">
               The Truth About LLM Capabilities
             </h2>
@@ -77,7 +77,7 @@ export default function HowLLMWorks() {
           </div>
 
           {/* Understanding LLM Predictions */}
-          <div className="bg-[#1c1f2a]/60 p-8 rounded-xl border border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
+          <div className="sm:bg-[#1c1f2a]/60 p-2 sm:p-8 rounded-xl sm:border sm:border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
             <h2 className="text-2xl font-semibold mb-4">
               Prediction, Not Calculation
             </h2>
@@ -127,7 +127,7 @@ export default function HowLLMWorks() {
           </div>
 
           {/* Limitations of LLMs */}
-          <div className="bg-[#1c1f2a]/60 p-8 rounded-xl border border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
+          <div className="sm:bg-[#1c1f2a]/60 p-2 sm:p-8 rounded-xl sm:border sm:border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
             <h2 className="text-2xl font-semibold mb-4">
               Inherent Limitations
             </h2>
@@ -218,7 +218,7 @@ export default function HowLLMWorks() {
           </div>
 
           {/* External Tools and Integration */}
-          <div className="bg-[#1c1f2a]/60 p-8 rounded-xl border border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
+          <div className="sm:bg-[#1c1f2a]/60 p-2 sm:p-8 rounded-xl sm:border sm:border-[#353945] backdrop-blur-sm hover:shadow-red-500/5 hover:shadow-lg transition-all duration-300 mb-12">
             <h2 className="text-2xl font-semibold mb-4">
               Extending Capabilities with External Tools
             </h2>
@@ -348,7 +348,7 @@ export default function HowLLMWorks() {
           </div>
 
           {/* Code and Context Example Section */}
-          <div className="bg-[#1c1f2a]/30 rounded-xl border border-[#353945] p-8 mb-12">
+          <div className="sm:bg-[#1c1f2a]/30 rounded-xl sm:border sm:border-[#353945] p-2  sm:p-8 mb-12">
             <h2 className="text-2xl font-bold mb-6 text-center">
               The Importance of Context
             </h2>
@@ -557,7 +557,7 @@ export default function HowLLMWorks() {
           </div>
 
           {/* Key Takeaways */}
-          <div className="bg-[#1c1f2a]/30 rounded-xl border border-[#353945] p-8 mb-12">
+          <div className="sm:bg-[#1c1f2a]/30 rounded-xl sm:border sm:border-[#353945] p-2 sm:p-8 mb-12">
             <h2 className="text-2xl font-bold mb-6 text-center">
               Key Takeaways
             </h2>

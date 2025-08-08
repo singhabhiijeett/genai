@@ -168,7 +168,7 @@ export default function ChatWithDimpsy() {
           </button>
         </div>
 
-        <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-3 sm:p-4 mb-3 sm:mb-4 overscroll-contain">
+        <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-3 sm:p-4 mb-3 sm:mb-4 overscroll-contain md:flex-none md:min-h-[40vh] md:max-h-[65vh] lg:max-h-[60vh]">
           <div className="flex flex-col gap-4">
             {messages.map((message, index) => (
               <div

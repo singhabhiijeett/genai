@@ -151,7 +151,7 @@ export default function AIAgent() {
           </button>
         </div>
 
-        <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-3 sm:p-4 mb-3 sm:mb-4 overscroll-contain">
+        <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-[#353945] bg-[#0f1117]/70 backdrop-blur-sm p-3 sm:p-4 mb-3 sm:mb-4 overscroll-contain md:flex-none md:min-h-[40vh] md:max-h-[65vh] lg:max-h-[60vh]">
           <div className="flex flex-col gap-4">
             {messages.map((message, index) => (
               <div
@@ -229,8 +229,8 @@ export default function AIAgent() {
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="Ask me to check weather, search the web, crypto price, or do math/prime tasks..."
-              className="w-full rounded-2xl border border-[#353945] bg-[#0f1117]/70 text-gray-200 py-3 px-4 outline-none focus:ring-1 focus:ring-red-500 transition-all resize-none"
+              placeholder="Ask weather, search, crypto, math…"
+              className="w-full h-12 rounded-2xl border border-[#353945] bg-[#0f1117]/70 text-gray-200 px-4 pr-12 outline-none focus:ring-1 focus:ring-red-500 transition-all resize-none overflow-hidden placeholder:text-gray-500"
               rows={1}
             />
             {!inputMessage.trim() && (

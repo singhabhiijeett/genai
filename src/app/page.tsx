@@ -19,11 +19,11 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="font-sans min-h-screen bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] text-white pb-24 pt-16 px-4 sm:px-6 md:px-8 flex flex-col">
+    <div className="font-sans min-h-screen bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] text-white pb-24 pt-8 px-4 sm:px-6 md:px-8 flex flex-col">
       <div className="max-w-6xl w-full mx-auto">
         <Header />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center max-w-6xl mx-auto w-full px-0 sm:px-4">
+      <main className="flex-1 flex flex-col items-center justify-center max-w-6xl mx-auto w-full px-0 sm:px-4 mt-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-6xl font-bold mb-4">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
