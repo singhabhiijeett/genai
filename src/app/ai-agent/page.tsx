@@ -230,11 +230,11 @@ export default function AIAgent() {
               onChange={(e) => setInputMessage(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask weather, search, crypto, math…"
-              className="w-full h-12 rounded-2xl border border-[#353945] bg-[#0f1117]/70 text-gray-200 px-4 pr-12 outline-none focus:ring-1 focus:ring-red-500 transition-all resize-none overflow-hidden placeholder:text-gray-500"
+              className="w-full h-12 leading-[3rem] rounded-2xl border border-[#353945] bg-[#0f1117]/70 text-gray-200 px-4 pr-12 outline-none focus:ring-1 focus:ring-red-500 transition-all resize-none overflow-hidden placeholder:text-gray-500 placeholder:leading-[3rem]"
               rows={1}
             />
             {!inputMessage.trim() && (
-              <div className="absolute right-4 top-3 text-gray-500 text-xs px-2 py-0.5 rounded-full bg-[#353945]/50">
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs px-2 py-0.5 rounded-full bg-[#353945]/50">
                 Enter ⏎
               </div>
             )}
