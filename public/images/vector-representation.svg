@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="280" viewBox="0 0 500 280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Styling -->
+  <style>
+    .vector-box {
+      fill: #2f3342;
+      stroke: #5f6577;
+      stroke-width: 2;
+      rx: 6;
+      ry: 6;
+    }
+    .vector-text {
+      fill: #ffffff;
+      font-family: sans-serif;
+      font-size: 12px;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .label-text {
+      fill: #b3bac3;
+      font-family: sans-serif;
+      font-size: 14px;
+      text-anchor: middle;
+    }
+    .arrow {
+      stroke: #8b6ba4;
+      stroke-width: 2;
+      marker-end: url(#arrowhead);
+    }
+    .word-box {
+      fill: #403249;
+      stroke: #8b6ba4;
+      stroke-width: 2;
+      rx: 6;
+      ry: 6;
+    }
+    .word-text {
+      fill: #ffffff;
+      font-family: sans-serif;
+      font-size: 14px;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+  </style>
+  
+  <!-- Arrow marker definition -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#8b6ba4" />
+    </marker>
+  </defs>
+  
+  <!-- Top section: Vector representation -->
+  <text x="250" y="30" class="label-text" font-weight="bold">Vector Representation in Vector Database</text>
+  
+  <!-- Product vector boxes -->
+  <rect x="70" y="60" width="360" height="30" class="vector-box" />
+  <text x="250" y="75" class="vector-text">[0.98, 0.23, -0.11, 0.45, 0.78, -0.34, 0.56, 0.12, ...]</text>
+  <text x="70" y="50" class="label-text" text-anchor="start">Product ID: "product_456"</text>
+  
+  <rect x="70" y="110" width="360" height="30" class="vector-box" />
+  <text x="250" y="125" class="vector-text">[0.91, 0.20, -0.12, 0.41, 0.82, -0.30, 0.59, 0.15, ...]</text>
+  <text x="70" y="100" class="label-text" text-anchor="start">Product ID: "product_789"</text>
+  
+  <!-- Similarity measure -->
+  <line x1="250" y1="90" x2="250" y2="110" stroke="#8f9bb3" stroke-width="1" stroke-dasharray="4 2" />
+  <text x="350" y="97" class="label-text" font-size="12">Similarity: 0.96 (cosine)</text>
+  
+  <!-- Bottom section: Bidirectional relationship between words and vectors -->
+  <text x="250" y="170" class="label-text" font-weight="bold">Bidirectional Relationship</text>
+  
+  <!-- Word to vector -->
+  <rect x="100" y="210" width="120" height="40" class="word-box" />
+  <text x="160" y="230" class="word-text">"Word/Sentence"</text>
+  
+  <path d="M 220,210 C 250,190 270,190 300,210" class="arrow" />
+  <path d="M 300,250 C 270,270 250,270 220,250" class="arrow" />
+  
+  <rect x="300" y="210" width="120" height="40" class="vector-box" />
+  <text x="360" y="230" class="vector-text">[Vector]</text>
+  
+  <text x="250" y="190" class="label-text" font-size="12">Encoding</text>
+  <text x="250" y="270" class="label-text" font-size="12">Decoding</text>
+</svg>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Styling -->
+  <style>
+    .node {
+      fill: #2f3342;
+      stroke: #5f6577;
+      stroke-width: 2;
+    }
+    .layer-0-node {
+      fill: #2f3342;
+      stroke: #5f6577;
+      stroke-width: 2;
+    }
+    .layer-1-node {
+      fill: #403249;
+      stroke: #8b6ba4;
+      stroke-width: 2;
+    }
+    .layer-2-node {
+      fill: #3a4257;
+      stroke: #7386c7;
+      stroke-width: 2;
+    }
+    .layer-label {
+      fill: #ffffff;
+      font-family: sans-serif;
+      font-size: 14px;
+      text-anchor: middle;
+      dominant-baseline: central;
+    }
+    .edge-0 {
+      stroke: #5f6577;
+      stroke-width: 1.5;
+    }
+    .edge-1 {
+      stroke: #8b6ba4;
+      stroke-width: 1.5;
+      stroke-dasharray: 4 2;
+    }
+    .edge-2 {
+      stroke: #7386c7;
+      stroke-width: 1.5;
+      stroke-dasharray: 2 2;
+    }
+    .layer-text {
+      fill: #8f9bb3;
+      font-family: sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    .alpha-text {
+      fill: #8f9bb3;
+      font-family: sans-serif;
+      font-size: 12px;
+    }
+  </style>
+
+  <!-- Background layers -->
+  <rect x="20" y="240" width="460" height="80" rx="5" fill="#1a1d29" fill-opacity="0.5" />
+  <rect x="40" y="140" width="420" height="80" rx="5" fill="#1a1d29" fill-opacity="0.4" />
+  <rect x="100" y="40" width="300" height="80" rx="5" fill="#1a1d29" fill-opacity="0.3" />
+
+  <!-- Layer labels -->
+  <text x="40" y="260" class="layer-text">Layer 0 (base layer): α=6</text>
+  <text x="60" y="160" class="layer-text">Layer 1: α=3</text>
+  <text x="120" y="60" class="layer-text">Layer 2: α=1</text>
+
+  <!-- Layer 0 (base layer) -->
+  <!-- Nodes -->
+  <circle cx="80" cy="290" r="15" class="layer-0-node" />
+  <circle cx="150" cy="290" r="15" class="layer-0-node" />
+  <circle cx="220" cy="290" r="15" class="layer-0-node" />
+  <circle cx="290" cy="290" r="15" class="layer-0-node" />
+  <circle cx="360" cy="290" r="15" class="layer-0-node" />
+  <circle cx="430" cy="290" r="15" class="layer-0-node" />
+  
+  <!-- Connections (dense) -->
+  <line x1="80" y1="290" x2="150" y2="290" class="edge-0" />
+  <line x1="80" y1="290" x2="220" y2="290" class="edge-0" />
+  <line x1="150" y1="290" x2="220" y2="290" class="edge-0" />
+  <line x1="150" y1="290" x2="290" y2="290" class="edge-0" />
+  <line x1="220" y1="290" x2="290" y2="290" class="edge-0" />
+  <line x1="220" y1="290" x2="360" y2="290" class="edge-0" />
+  <line x1="290" y1="290" x2="360" y2="290" class="edge-0" />
+  <line x1="290" y1="290" x2="430" y2="290" class="edge-0" />
+  <line x1="360" y1="290" x2="430" y2="290" class="edge-0" />
+
+  <!-- Layer 1 (mid layer) -->
+  <!-- Nodes -->
+  <circle cx="150" cy="190" r="15" class="layer-1-node" />
+  <circle cx="220" cy="190" r="15" class="layer-1-node" />
+  <circle cx="290" cy="190" r="15" class="layer-1-node" />
+  <circle cx="360" cy="190" r="15" class="layer-1-node" />
+  
+  <!-- Connections (medium density) -->
+  <line x1="150" y1="190" x2="220" y2="190" class="edge-1" />
+  <line x1="220" y1="190" x2="290" y2="190" class="edge-1" />
+  <line x1="290" y1="190" x2="360" y2="190" class="edge-1" />
+  <line x1="150" y1="190" x2="290" y2="190" class="edge-1" />
+  
+  <!-- Vertical connections between layers -->
+  <line x1="150" y1="190" x2="150" y2="290" class="edge-1" stroke-dasharray="3 2" />
+  <line x1="220" y1="190" x2="220" y2="290" class="edge-1" stroke-dasharray="3 2" />
+  <line x1="290" y1="190" x2="290" y2="290" class="edge-1" stroke-dasharray="3 2" />
+  <line x1="360" y1="190" x2="360" y2="290" class="edge-1" stroke-dasharray="3 2" />
+
+  <!-- Layer 2 (top layer) -->
+  <!-- Nodes -->
+  <circle cx="220" cy="90" r="15" class="layer-2-node" />
+  <circle cx="290" cy="90" r="15" class="layer-2-node" />
+  
+  <!-- Connection (sparse) -->
+  <line x1="220" y1="90" x2="290" y2="90" class="edge-2" />
+  
+  <!-- Vertical connections between layers -->
+  <line x1="220" y1="90" x2="220" y2="190" class="edge-2" stroke-dasharray="2 2" />
+  <line x1="290" y1="90" x2="290" y2="190" class="edge-2" stroke-dasharray="2 2" />
+
+  <!-- Query path illustration -->
+  <circle cx="130" cy="50" r="10" fill="#cf5e5e" stroke="#fff" stroke-width="1" />
+  <text x="130" y="50" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="10">Q</text>
+  
+  <!-- Query path -->
+  <path d="M 130,50 C 160,60 180,70 220,90" stroke="#cf5e5e" stroke-width="2" fill="none" />
+  <path d="M 220,90 C 240,120 260,150 290,190" stroke="#cf5e5e" stroke-width="2" fill="none" />
+  <path d="M 290,190 C 240,220 200,250 150,290" stroke="#cf5e5e" stroke-width="2" fill="none" />
+
+  <!-- Title -->
+  <text x="250" y="380" text-anchor="middle" fill="#8f9bb3" font-family="sans-serif" font-size="14">Hierarchical Navigable Small Worlds (HNSW)</text>
+</svg>

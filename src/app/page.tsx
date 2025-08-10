@@ -25,19 +25,16 @@ export default function Home() {
             Learn GenAI
           </span>
         </h1>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-          Understand the fundamentals of generative AI, how it works, and the
-          technology behind today&apos;s AI revolution.
+        <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          A structured learning path to understand generative AI, from basic
+          concepts to advanced implementations with hands-on projects and
+          interactive demos.
         </p>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 w-full my-8 sm:my-12">
-        {/* Feature Card 1 */}
-        <div className="bg-[#1c1f2a]/50 p-6 rounded-xl border border-[#353945] backdrop-blur-sm hover:transform hover:scale-[1.02] transition-all duration-300 hover:shadow-red-500/10 hover:shadow-lg">
-          <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center mb-4">
+        <div className="mt-6 inline-flex bg-[#1c1f2a]/70 rounded-lg border border-[#353945] px-4 py-2 text-sm text-gray-400">
+          <span className="flex items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
+              className="h-4 w-4 mr-2 text-red-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -46,82 +43,539 @@ export default function Home() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
               />
             </svg>
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Core Concepts</h3>
-          <p className="text-gray-400">
-            Learn the fundamental principles that power generative AI models and
-            how they work.
-          </p>
-        </div>
-
-        {/* Feature Card 2 */}
-        <div className="bg-[#1c1f2a]/50 p-6 rounded-xl border border-[#353945] backdrop-blur-sm hover:transform hover:scale-[1.02] transition-all duration-300 hover:shadow-red-500/10 hover:shadow-lg">
-          <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-              />
-            </svg>
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Model Architecture</h3>
-          <p className="text-gray-400">
-            Dive into the architecture of transformers, diffusion models, and
-            other key AI frameworks.
-          </p>
-        </div>
-
-        {/* Feature Card 3 */}
-        <div className="bg-[#1c1f2a]/50 p-6 rounded-xl border border-[#353945] backdrop-blur-sm hover:transform hover:scale-[1.02] transition-all duration-300 hover:shadow-red-500/10 hover:shadow-lg">
-          <div className="w-12 h-12 bg-gradient-to-br from-red-400 to-red-600 rounded-lg flex items-center justify-center mb-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-white"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"
-              />
-            </svg>
-          </div>
-          <h3 className="text-xl font-semibold mb-2">Hands-on Learning</h3>
-          <p className="text-gray-400">
-            Interactive examples and code demonstrations to help you understand
-            AI in practice.
-          </p>
+            Follow the numbered learning path for the best learning experience
+          </span>
         </div>
       </div>
 
-      <div className="flex gap-4 sm:gap-6 items-center flex-col sm:flex-row">
+      <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
+        GenAI Learning Path
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8 w-full mb-8 sm:mb-12">
+        {/* Card 1 - Introduction */}
         <Link
           href="/introduction"
-          className="rounded-lg bg-gradient-to-r from-red-400 to-red-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 relative overflow-hidden group"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
         >
-          <span className="relative z-10">Start Learning</span>
-          <span className="absolute w-0 h-0 rounded-full bg-white opacity-10 group-hover:w-32 group-hover:h-32 -left-2 -top-2 transition-all duration-700 ease-out"></span>
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              #1
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                Introduction to GenAI
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                The foundations of generative AI - what it is, how it works, and
+                why it matters in today&apos;s technology landscape.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Estimated reading time: 15 min
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Start Here</span>
+              </div>
+            </div>
+          </div>
         </Link>
+
+        {/* Card 2 - How LLM Works */}
         <Link
           href="/how-llm-works"
-          className="rounded-lg bg-[#1c1f2a]/50 border border-[#353945] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-[#1c1f2a]/80"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
         >
-          <span className="relative z-10">LLM Reality Check</span>
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              #2
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                How LLMs Work
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Deep dive into the architecture of Large Language Models,
+                transformers, attention mechanisms, and the magic behind text
+                generation.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Estimated reading time: 25 min
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Technical</span>
+              </div>
+            </div>
+          </div>
         </Link>
+
+        {/* Card 3 - Building AI Chatbots */}
+        <Link
+          href="/building-ai-chat-bots"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              #3
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                Building AI Chatbots
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Learn how to create your own AI chatbots from scratch using
+                modern frameworks and APIs.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Estimated reading time: 20 min
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Practical</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Demo - Chat with Dimpsy */}
+        <Link
+          href="/chat-with-dimpsy"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              DEMO
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                Chat with Dimpsy
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Have a conversation with Dimpsy, our custom AI assistant built
+                to showcase natural language processing capabilities.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                  Interactive Demo
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Hands-on</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card 4 - What are AI Agents */}
+        <Link
+          href="/what-are-ai-agents"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              #4
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                What are AI Agents?
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Discover how AI agents work, their capabilities, and how they
+                can be built to perform complex tasks autonomously.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Estimated reading time: 22 min
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Demo - AI Agent */}
+        <Link
+          href="/ai-agent"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              DEMO
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                AI Agent
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Experience an AI agent in action. See how autonomous agents can
+                perform complex tasks by breaking them down into steps and using
+                tools.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                  Interactive Demo
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Hands-on</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Demo - Website Builder */}
+        <Link
+          href="/website-builder"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              DEMO
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                Website Builder AI
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Experience our AI Website Builder that can generate full
+                websites based on your description using advanced AI models.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                  Interactive Demo
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Hands-on</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card 5 - What are Vectors */}
+        <Link
+          href="/what-are-vectors"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              #5
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                Vector Embedding & Database
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Understand how vector embeddings work and their crucial role in
+                modern AI systems for semantic search and retrieval.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Estimated reading time: 18 min
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Technical</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card 6 - Vector Database Implementation */}
+        <Link
+          href="/what-is-vector-database-and-internal-implementation"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              #6
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                Vector Database Implementation
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Deep dive into how vector databases are implemented internally,
+                including indexing techniques and similarity search algorithms.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Estimated reading time: 30 min
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Card 7 - RAG and LangChain */}
+        <Link
+          href="/what-is-rag-and-langchain"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              #7
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                RAG & LangChain
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Learn about Retrieval-Augmented Generation and how to build
+                powerful AI systems that combine the strengths of language
+                models with external knowledge retrieval.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Estimated reading time: 28 min
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Advanced</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+
+        {/* Demo - RAG System */}
+        <Link
+          href="/rag-system"
+          className="group bg-[#1c1f2a]/50 rounded-xl border border-[#353945] overflow-hidden hover:shadow-red-500/10 hover:shadow-lg transition-all duration-300"
+        >
+          <div className="relative">
+            <div className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-br-lg z-10">
+              DEMO
+            </div>
+            <div className="bg-gradient-to-r from-[#1a1d23]/80 via-[#1a1d23]/50 to-transparent absolute inset-0 z-0 group-hover:opacity-80 transition-opacity"></div>
+            <div className="h-3 w-full bg-gradient-to-r from-red-400 to-red-600"></div>
+            <div className="p-6 relative z-1">
+              <h3 className="text-xl font-semibold mb-2 group-hover:text-red-400 transition-colors">
+                RAG System
+              </h3>
+              <p className="text-gray-400 text-sm mb-4">
+                Try our interactive Retrieval-Augmented Generation system.
+                Upload your own documents and chat with them using the power of
+                vector search and AI.
+              </p>
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-3 w-3 mr-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                  Interactive Demo
+                </span>
+                <span className="mx-2">•</span>
+                <span className="text-red-400">Hands-on</span>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
+
+      <div className="border-t border-[#353945] pt-8 mt-8">
+        <h2 className="text-2xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
+          Ready to Dive In?
+        </h2>
+        <div className="flex gap-4 sm:gap-6 items-center flex-col sm:flex-row">
+          <Link
+            href="/introduction"
+            className="rounded-lg bg-gradient-to-r from-red-400 to-red-600 px-6 py-3 font-medium text-white transition-all duration-300 hover:shadow-lg hover:shadow-red-500/20 relative overflow-hidden group"
+          >
+            <span className="relative z-10">Start Learning Path</span>
+            <span className="absolute w-0 h-0 rounded-full bg-white opacity-10 group-hover:w-32 group-hover:h-32 -left-2 -top-2 transition-all duration-700 ease-out"></span>
+          </Link>
+          <Link
+            href="/rag-system"
+            className="rounded-lg bg-[#1c1f2a]/50 border border-red-500/30 px-6 py-3 font-medium text-red-400 transition-all duration-300 hover:bg-[#1c1f2a]/80 hover:border-red-500/50"
+          >
+            <span className="relative z-10">Try Interactive RAG Demo →</span>
+          </Link>
+          <Link
+            href="/ai-agent"
+            className="rounded-lg bg-[#1c1f2a]/50 border border-[#353945] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-[#1c1f2a]/80"
+          >
+            <span className="relative z-10">Explore AI Agent</span>
+          </Link>
+          <Link
+            href="/chat-with-dimpsy"
+            className="rounded-lg bg-[#1c1f2a]/50 border border-[#353945] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-[#1c1f2a]/80"
+          >
+            <span className="relative z-10">Chat with Dimpsy</span>
+          </Link>
+        </div>
       </div>
     </PageLayout>
   );

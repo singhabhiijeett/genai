@@ -36,11 +36,18 @@ export default function Header() {
     { label: "How LLM Works", href: "/how-llm-works" },
     { label: "Building AI Chatbots", href: "/building-ai-chat-bots" },
     { label: "What are AI Agents?", href: "/what-are-ai-agents" },
+    { label: "What are Vectors?", href: "/what-are-vectors" },
+    {
+      label: "Vector Database Implementation",
+      href: "/what-is-vector-database-and-internal-implementation",
+    },
+    { label: "RAG and LangChain", href: "/what-is-rag-and-langchain" },
   ];
   const navItems: NavItem[] = [
-    { label: "Chat with Dimpsy", href: "/chat-with-dimpsy" },
-    { label: "Website Builder AI Agent", href: "/website-builder" },
-    { label: "AI Agent", href: "/ai-agent", cta: true },
+    { label: "Chat with Dimpsy", href: "/chat-with-dimpsy", cta: true },
+    { label: "GeneralAI Agent", href: "/ai-agent", cta: true },
+    { label: "Website Builder AI Agent", href: "/website-builder", cta: true },
+    { label: "RAG System", href: "/rag-system", cta: true },
   ];
 
   const linkClasses = (href: string, cta?: boolean) => {
