@@ -10,10 +10,24 @@ import { writeFile, unlink } from "fs/promises";
 const CHUNK_SIZE = 1000;
 const CHUNK_OVERLAP = 200;
 
+// LinkedIn profile detection keywords
+const LINKEDIN_KEYWORDS = [
+  "linkedin.com",
+  "work experience",
+  "education",
+  "skills",
+  "certifications",
+  "professional experience",
+  "summary",
+  "about",
+  "accomplishments",
+];
+
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File | null;
+    const isLinkedInProfile = formData.get("isLinkedInProfile") === "true";
 
     if (!file) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
@@ -43,6 +57,20 @@ export async function POST(request: NextRequest) {
 
     console.log(`Loaded PDF with ${rawDocs.length} pages`);
 
+    // Detect if it's a LinkedIn profile if not explicitly specified
+    let profileDetected = isLinkedInProfile;
+
+    if (!profileDetected) {
+      // Check content for LinkedIn indicators
+      const fullText = rawDocs
+        .map((doc) => doc.pageContent)
+        .join(" ")
+        .toLowerCase();
+      profileDetected = LINKEDIN_KEYWORDS.some((keyword) =>
+        fullText.includes(keyword.toLowerCase())
+      );
+    }
+
     // 2. Create chunks from the document
     const textSplitter = new RecursiveCharacterTextSplitter({
       chunkSize: CHUNK_SIZE,
@@ -66,6 +94,19 @@ export async function POST(request: NextRequest) {
 
     const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX_NAME!);
 
+    // Add document type and specific metadata to chunks
+    for (let i = 0; i < chunkedDocs.length; i++) {
+      // Add chunk number and document type to metadata
+      chunkedDocs[i].metadata = {
+        ...chunkedDocs[i].metadata,
+        source: file.name,
+        filename: file.name,
+        chunk: i,
+        uploadedAt: new Date().toISOString(),
+        documentType: profileDetected ? "linkedin_profile" : "document",
+      };
+    }
+
     // 5. Embed chunks and upload to Pinecone
     console.log("Embedding documents and storing in Pinecone...");
 
@@ -82,6 +123,8 @@ export async function POST(request: NextRequest) {
       message: `Successfully processed and stored ${chunkedDocs.length} document chunks in the vector database`,
       totalPages: rawDocs.length,
       totalChunks: chunkedDocs.length,
+      isLinkedInProfile: profileDetected,
+      documentId: file.name,
     });
   } catch (error) {
     console.error("Error processing document:", error);

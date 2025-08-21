@@ -22,7 +22,7 @@ export default function Home() {
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-6xl font-bold mb-4">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
-            Learn GenAI
+            Gen-AI
           </span>
         </h1>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">

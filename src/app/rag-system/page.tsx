@@ -6,7 +6,6 @@ import { FiRefreshCw } from "react-icons/fi";
 import { RiRobot2Line } from "react-icons/ri";
 import PageLayout from "@/components/PageLayout";
 import CodeBlock from "@/components/CodeBlock";
-import Image from "next/image";
 
 type MessagePart = { text: string };
 type ChatMessage = {
@@ -125,58 +124,21 @@ export default function RAGSystem() {
       setUploadedDocuments(userDocs);
     }
 
-    // Fetch all documents from the database
-    const fetchAllDocuments = async () => {
+    // Only load documents from the current session, don't fetch from database
+    const loadSessionDocuments = () => {
       try {
-        const response = await fetch("/api/rag-system/documents");
-        if (response.ok) {
-          const data = await response.json();
-          if (
-            data.documents &&
-            Array.isArray(data.documents) &&
-            data.documents.length > 0
-          ) {
-            // Mark database documents as from DB
-            const dbDocs = data.documents.map(
-              (doc: Partial<UploadedDocument>) =>
-                ({
-                  ...doc,
-                  fromDatabase: true,
-                  id:
-                    doc.id ||
-                    `db-doc-${doc.name}-${Math.random()
-                      .toString(36)
-                      .substring(2, 9)}`,
-                } as UploadedDocument)
-            );
-
-            // Merge with any documents the user just uploaded in this session
-            // Keep user's uploaded docs separate to avoid duplication
-            const savedUserDocs = sessionStorage.getItem(
-              "rag-system-documents"
-            );
-            const userDocs = savedUserDocs ? JSON.parse(savedUserDocs) : [];
-
-            // Filter out any database documents that match user's uploaded docs to avoid duplicates
-            const userDocNames = userDocs.map(
-              (doc: UploadedDocument) => doc.name
-            );
-            const filteredDbDocs = dbDocs.filter(
-              (doc: UploadedDocument) => !userDocNames.includes(doc.name)
-            );
-
-            // Set the combined documents
-            setUploadedDocuments([...userDocs, ...filteredDbDocs]);
-          }
-        } else {
-          console.error("Failed to fetch documents");
+        // Load user's recently uploaded documents
+        const savedUserDocs = sessionStorage.getItem("rag-system-documents");
+        if (savedUserDocs) {
+          const userDocs = JSON.parse(savedUserDocs);
+          setUploadedDocuments(userDocs);
         }
       } catch (error) {
-        console.error("Error fetching documents:", error);
+        console.error("Error loading session documents:", error);
       }
     };
 
-    fetchAllDocuments();
+    loadSessionDocuments();
   }, []);
 
   // Save messages to session storage when they change
@@ -187,11 +149,6 @@ export default function RAGSystem() {
         JSON.stringify(messages)
       );
     }
-  }, [messages]);
-
-  // Scroll to bottom when messages change
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSendMessage = async () => {
@@ -324,16 +281,8 @@ export default function RAGSystem() {
           JSON.stringify(updatedUserDocs)
         );
 
-        // Update the global document list with both database docs and user docs
-        // Filter out database docs that match names with new uploads to avoid duplicates
-        const dbDocs = uploadedDocuments.filter(
-          (doc) =>
-            doc.fromDatabase &&
-            !newDocuments.some((newDoc) => newDoc.name === doc.name)
-        );
-
-        const updatedDocuments = [...dbDocs, ...updatedUserDocs];
-        setUploadedDocuments(updatedDocuments);
+        // Only show documents from the current session
+        setUploadedDocuments(updatedUserDocs);
 
         setIsUploading(false);
         toast.success("Documents processed successfully!");
@@ -447,6 +396,26 @@ export default function RAGSystem() {
           </h1>
         </div>
         <div className="flex gap-2">
+          {/* <Link
+            href="/rag-system/salary-estimator"
+            className="flex items-center gap-2 px-3 py-1 rounded-full text-sm bg-[#353945] text-gray-300 hover:bg-[#4a4f5e] transition-colors hover:shadow-md hover:shadow-green-500/10"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>Salary Estimator</span>
+          </Link> */}
           <label
             htmlFor="document-upload"
             className="flex items-center gap-2 px-3 py-1 rounded-full text-sm bg-[#353945] text-gray-300 hover:bg-[#4a4f5e] transition-colors hover:shadow-md hover:shadow-red-500/10 cursor-pointer"
@@ -495,190 +464,222 @@ export default function RAGSystem() {
         </div>
       )}
 
-      {/* Currently loaded documents indicator */}
-      <div className="mb-4 p-3 rounded-lg bg-[#353945]/50 border border-[#353945]">
-        <div className="flex items-center gap-2 mb-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 text-red-400"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
-              clipRule="evenodd"
-            />
-          </svg>
-          <h3 className="font-semibold text-white">
-            Available Knowledge Base Documents
-          </h3>
-          <div className="ml-2 px-2 py-0.5 text-xs rounded-full bg-red-500/20 border border-red-500/30 text-red-300">
-            {uploadedDocuments.length}{" "}
-            {uploadedDocuments.length === 1 ? "document" : "documents"}
-          </div>
-        </div>
-
-        {uploadedDocuments.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-4 bg-[#1a1d23]/70 rounded-md">
+      {/* Row 1: Document upload section (100% width) */}
+      <div className="w-full mb-4">
+        <div className="p-3 rounded-lg bg-[#1a1d23]/70 border border-[#353945]">
+          <div className="flex items-center gap-2 mb-2">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-10 w-10 text-gray-500 mb-2"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+              className="h-5 w-5 text-red-400"
+              viewBox="0 0 20 20"
+              fill="currentColor"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                fillRule="evenodd"
+                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+                clipRule="evenodd"
               />
             </svg>
-            <p className="text-gray-400 text-sm">No documents loaded yet</p>
-          </div>
-        ) : (
-          <>
-            {uploadedDocuments.map((doc) => (
-              <div
-                key={doc.id}
-                className="flex items-center pl-2 py-2 bg-[#1a1d23]/70 rounded-md mb-2"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4 text-red-400 mr-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <div>
-                  <div className="text-sm font-medium text-white">
-                    {doc.name}
-                  </div>
-                  <div className="text-xs text-gray-400">
-                    {doc.fromDatabase ? (
-                      <>
-                        {doc.chunks && `${doc.chunks} chunks`}
-                        {doc.pages && ` • ${doc.pages} pages`}
-                        {` • Added ${new Date(
-                          doc.uploadedAt
-                        ).toLocaleDateString()}`}
-                      </>
-                    ) : (
-                      <>
-                        {doc.type && `${doc.type}`}
-                        {doc.size && ` • ${(doc.size / 1024).toFixed(1)} KB`}
-                        {` • Uploaded ${new Date(
-                          doc.uploadedAt
-                        ).toLocaleDateString()}`}
-                      </>
-                    )}
-                  </div>
-                </div>
-                <div className="ml-auto flex items-center">
-                  {doc.isDefault && (
-                    <div className="px-2 py-0.5 text-xs rounded-full bg-red-500/20 border border-red-500/30 text-red-300 mr-2">
-                      Default
-                    </div>
-                  )}
-                  {doc.fromDatabase && (
-                    <div className="px-2 py-0.5 text-xs rounded-full bg-blue-500/20 border border-blue-500/30 text-blue-300 mr-2">
-                      Database
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </>
-        )}
-
-        <p className="text-xs text-gray-400 mt-2">
-          {uploadedDocuments.length > 0 ? (
-            <>
-              The documents above are loaded into the vector database and
-              available for queries.
-              <span className="block mt-1">
-                <span className="text-blue-300">Blue badges</span> indicate
-                documents from the database. Documents you upload in this
-                session will be saved to the database for all users.
-              </span>
-            </>
-          ) : (
-            "Upload PDF documents to build your knowledge base and start asking questions about them."
-          )}
-        </p>
-      </div>
-
-      <div className="flex flex-col gap-4 mb-6">
-        <div className="p-4 rounded-xl bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] border border-[#353945]">
-          <h2 className="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
-            About RAG Systems
-          </h2>
-          <p className="text-gray-300 mb-3">
-            This RAG (Retrieval-Augmented Generation) system uses a knowledge
-            base to provide accurate and contextual answers to your questions.
-            It searches through a vector database to retrieve relevant
-            information before generating responses.
-          </p>
-          <div className="flex justify-center my-3">
-            <Image
-              src="/images/RAG.svg"
-              alt="RAG System Architecture Diagram"
-              width={600}
-              height={300}
-              className="rounded-lg shadow-lg"
-            />
-          </div>
-          <div className="mt-4 border-t border-[#4a4f5e] pt-3">
-            <h3 className="text-md font-semibold mb-2 text-red-400">
-              How to use this system:
+            <h3 className="font-semibold text-white">
+              Current Session Documents
             </h3>
-            <ol className="list-decimal list-inside text-sm text-gray-300 space-y-1">
-              <li>
-                Click the <b className="text-red-400">Upload PDF</b> button to
-                add documents to the knowledge base
-              </li>
-              <li>
-                The system will process your document and split it into semantic
-                chunks
-              </li>
-              <li>
-                Each chunk is converted into a vector embedding and stored in
-                the database
-              </li>
-              <li>
-                Ask questions about your documents in the chat interface below
-              </li>
-              <li>
-                The system will retrieve relevant context and generate accurate
-                answers
-              </li>
-            </ol>
+            <div className="ml-2 px-2 py-0.5 text-xs rounded-full bg-red-500/20 border border-red-500/30 text-red-300">
+              {uploadedDocuments.length}{" "}
+              {uploadedDocuments.length === 1 ? "document" : "documents"}
+            </div>
           </div>
+
+          {uploadedDocuments.length === 0 ? (
+            <div className="flex flex-col items-center justify-center  bg-[#1a1d23]/70 rounded-md">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-10 w-10 text-gray-500 mb-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              <p className="text-gray-400 text-sm">No documents loaded yet</p>
+            </div>
+          ) : (
+            <div className="max-h-[15vh] overflow-y-auto custom-scrollbar">
+              {uploadedDocuments.map((doc) => (
+                <div
+                  key={doc.id}
+                  className="flex items-center pl-2 py-2 bg-[#1a1d23]/70 rounded-md mb-2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4 text-red-400 mr-2"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <div>
+                    <div className="text-sm font-medium text-white">
+                      {doc.name}
+                    </div>
+                    <div className="text-xs text-gray-400">
+                      {doc.type && `${doc.type}`}
+                      {doc.size && ` • ${(doc.size / 1024).toFixed(1)} KB`}
+                      {` • Uploaded ${new Date(
+                        doc.uploadedAt
+                      ).toLocaleDateString()}`}
+                      {doc.chunks && ` • ${doc.chunks} chunks`}
+                    </div>
+                  </div>
+                  <div className="ml-auto flex items-center">
+                    {doc.isDefault && (
+                      <div className="px-2 py-0.5 text-xs rounded-full bg-red-500/20 border border-red-500/30 text-red-300 mr-2">
+                        Default
+                      </div>
+                    )}
+                    <div className="px-2 py-0.5 text-xs rounded-full bg-green-500/20 border border-green-500/30 text-green-300 mr-2">
+                      Current Session
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <p className="text-xs text-gray-400 mt-2">
+            {uploadedDocuments.length > 0 ? (
+              <>
+                The documents above are uploaded in your current session and
+                available for queries. All documents are also stored in the
+                vector database for future sessions.
+              </>
+            ) : (
+              "Upload PDF documents to build your knowledge base and start asking questions about them."
+            )}
+          </p>
         </div>
       </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-[#353945] bg-gradient-to-b from-[#0f1117]/70 via-[#181a20]/60 to-[#1a1d23]/70 backdrop-blur-sm p-3 sm:p-4 mb-3 sm:mb-4 overscroll-contain md:flex-none md:min-h-[40vh] md:max-h-[65vh] lg:max-h-[60vh]">
-        <div className="flex flex-col gap-4">
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`flex items-start ${
-                message.role === "user" ? "justify-end" : "justify-start"
-              } gap-2`}
-            >
-              {message.role !== "user" && (
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex-shrink-0 flex items-center justify-center mt-1">
-                  <RiRobot2Line className="text-white text-sm" />
+      {/* Row 2: Two-column layout for About RAG (30%) and Chat UI (70%) */}
+      <div className="flex flex-col lg:flex-row lg:gap-6 lg:h-[calc(100vh-220px)] min-h-[550px]">
+        {/* Left column - About RAG section (30% on desktop) */}
+        <div className="lg:w-[30%] mb-4 lg:mb-0 flex flex-col">
+          {/* About RAG Systems */}
+          <div className="p-4 rounded-xl bg-gradient-to-b from-[#0f1117] via-[#181a20] to-[#1a1d23] border border-[#353945] h-full">
+            <h2 className="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
+              About RAG Systems
+            </h2>
+            <p className="text-gray-300 mb-2 text-sm">
+              This RAG (Retrieval-Augmented Generation) system uses a knowledge
+              base to provide accurate and contextual answers to your questions.
+              It searches a vector database to retrieve relevant information
+              before generating responses.
+            </p>
+            <div className="flex justify-center my-2">
+              <div className="p-2 bg-[#1c1f2a] rounded-lg shadow-lg border border-[#353945]">
+                <div className="flex justify-center items-center gap-4">
+                  <div className="text-center p-2">
+                    <div className="w-10 h-10 mx-auto mb-2 bg-[#181a20] rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M3 5h18v14h-18v-14zm9 12c.5 0 1-.5 1-1s-.5-1-1-1-1 .5-1 1 .5 1 1 1zm-7-11v9h14v-9h-14z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs text-red-400">Documents</span>
+                  </div>
+
+                  <svg className="w-5 h-5 text-red-500" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M8 5v14l11-7z" />
+                  </svg>
+
+                  <div className="text-center p-2">
+                    <div className="w-10 h-10 mx-auto mb-2 bg-[#181a20] rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M12 3v3m0 12v3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M3 12h3m12 0h3M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs text-red-400">Vectors</span>
+                  </div>
+
+                  <svg className="w-5 h-5 text-red-500" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M8 5v14l11-7z" />
+                  </svg>
+
+                  <div className="text-center p-2">
+                    <div className="w-10 h-10 mx-auto mb-2 bg-[#181a20] rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24">
+                        <path
+                          fill="currentColor"
+                          d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5A2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5a2.5 2.5 0 0 0 2.5 2.5a2.5 2.5 0 0 0 2.5-2.5a2.5 2.5 0 0 0-2.5-2.5z"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-xs text-red-400">AI Model</span>
+                  </div>
                 </div>
-              )}
-              <div
-                className={`
+              </div>
+            </div>
+            <div className="mt-4 border-t border-[#4a4f5e] pt-3">
+              <h3 className="text-md font-semibold mb-2 text-red-400">
+                How to use this system:
+              </h3>
+              <ol className="list-decimal list-inside text-sm text-gray-300 space-y-1">
+                <li>
+                  Click the <b className="text-red-400">Upload PDF</b> button to
+                  add documents to the knowledge base
+                </li>
+                <li>
+                  The system will process your document and split it into
+                  semantic chunks
+                </li>
+                <li>
+                  Each chunk is converted into a vector embedding and stored in
+                  the database
+                </li>
+                <li>
+                  Ask questions about your documents in the chat interface
+                </li>
+                <li>
+                  The system will retrieve relevant context and generate
+                  accurate answers
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        {/* Right side - Chat UI (70% on desktop) */}
+        <div className="lg:w-[70%] flex flex-col h-full">
+          {/* Chat messages container */}
+          <div className="flex-1 min-h-0 overflow-y-auto rounded-xl border border-[#353945] bg-gradient-to-b from-[#0f1117]/70 via-[#181a20]/60 to-[#1a1d23]/70 backdrop-blur-sm p-4 sm:p-5 mb-3 sm:mb-4 overscroll-contain h-[calc(100%-100px)] custom-scrollbar">
+            <div className="flex flex-col gap-6">
+              {messages.map((message, index) => (
+                <div
+                  key={index}
+                  className={`flex items-start ${
+                    message.role === "user" ? "justify-end" : "justify-start"
+                  } gap-2`}
+                >
+                  {message.role !== "user" && (
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex-shrink-0 flex items-center justify-center mt-1">
+                      <RiRobot2Line className="text-white text-sm" />
+                    </div>
+                  )}
+                  <div
+                    className={`
                   max-w-[85%] rounded-2xl p-3 animate-fadeIn shadow-sm
                   ${
                     message.role === "user"
@@ -686,88 +687,90 @@ export default function RAGSystem() {
                       : "bg-[#353945] text-gray-200 rounded-tl-none"
                   }
                 `}
-              >
-                {formatMessageContent(message.parts[0].text)}
-              </div>
-              {message.role === "user" && (
-                <div className="w-8 h-8 rounded-full bg-red-500 flex-shrink-0 flex items-center justify-center mt-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 text-white"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
                   >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                    {formatMessageContent(message.parts[0].text)}
+                  </div>
+                  {message.role === "user" && (
+                    <div className="w-8 h-8 rounded-full bg-red-500 flex-shrink-0 flex items-center justify-center mt-1">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4 text-white"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                  )}
+                </div>
+              ))}
+
+              {isLoading && (
+                <div className="flex items-start justify-start gap-2">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex-shrink-0 flex items-center justify-center mt-1">
+                    <RiRobot2Line className="text-white text-sm" />
+                  </div>
+                  <div className="max-w-[85%] rounded-2xl p-3 animate-fadeIn shadow-sm bg-[#353945] text-gray-200 rounded-tl-none">
+                    <div className="flex space-x-2">
+                      <div className="h-2 w-2 bg-red-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                      <div className="h-2 w-2 bg-red-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                      <div className="h-2 w-2 bg-red-400 rounded-full animate-bounce"></div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
+            </div>
+          </div>
+
+          <div
+            className="flex gap-2 sm:gap-3 items-center sticky bottom-0 z-10 rounded-xl border border-transparent  pb-3 pt-2"
+            style={{
+              paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.25rem)",
+            }}
+          >
+            <div className="flex-grow relative">
+              <textarea
+                value={inputMessage}
+                onChange={(e) => setInputMessage(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Ask a question about the knowledge base..."
+                className="w-full h-14 py-4 rounded-2xl border border-[#353945] bg-[#191c24] text-gray-200 px-4 pr-12 outline-none focus:ring-1 focus:ring-red-500 transition-all resize-none overflow-hidden placeholder:text-gray-500"
+                rows={1}
+              />
+              {!inputMessage.trim() && (
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs px-2 py-0.5 rounded-full bg-[#353945]/50">
+                  Enter ⏎
                 </div>
               )}
             </div>
-          ))}
+            <button
+              onClick={handleSendMessage}
+              disabled={isLoading || !inputMessage.trim()}
+              className={`p-3.5 rounded-full ${
+                isLoading || !inputMessage.trim()
+                  ? "bg-[#353945] text-gray-500"
+                  : "bg-gradient-to-r from-red-400 to-red-600 text-white hover:shadow-lg hover:shadow-red-500/30"
+              } transition-all`}
+            >
+              <IoSend size={20} />
+            </button>
+          </div>
 
-          {isLoading && (
-            <div className="flex items-start justify-start gap-2">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 to-red-600 flex-shrink-0 flex items-center justify-center mt-1">
-                <RiRobot2Line className="text-white text-sm" />
-              </div>
-              <div className="max-w-[85%] rounded-2xl p-3 animate-fadeIn shadow-sm bg-[#353945] text-gray-200 rounded-tl-none">
-                <div className="flex space-x-2">
-                  <div className="h-2 w-2 bg-red-400 rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                  <div className="h-2 w-2 bg-red-400 rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                  <div className="h-2 w-2 bg-red-400 rounded-full animate-bounce"></div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div ref={messagesEndRef} />
+          <div className="flex items-center justify-center mt-3 gap-1.5">
+            <div className="h-0.5 w-5 bg-[#353945] rounded-full"></div>
+            <p className="text-xs text-gray-500 text-center">
+              Powered by RAG with Pinecone and Gemini API.{" "}
+              <span className="text-red-400">Chat history stored locally.</span>
+            </p>
+            <div className="h-0.5 w-5 bg-[#353945] rounded-full"></div>
+          </div>
         </div>
-      </div>
-
-      <div
-        className="flex gap-2 sm:gap-3 items-center sticky bottom-0 z-10 rounded-xl border border-transparent bg-gradient-to-t from-[#0f1117] via-[#0f1117]/90 to-transparent pb-3 pt-2"
-        style={{
-          paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.25rem)",
-        }}
-      >
-        <div className="flex-grow relative">
-          <textarea
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Ask a question about the knowledge base..."
-            className="w-full h-12 leading-[3rem] rounded-2xl border border-[#353945] bg-[#0f1117]/70 text-gray-200 px-4 pr-12 outline-none focus:ring-1 focus:ring-red-500 transition-all resize-none overflow-hidden placeholder:text-gray-500 placeholder:leading-[3rem]"
-            rows={1}
-          />
-          {!inputMessage.trim() && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 text-xs px-2 py-0.5 rounded-full bg-[#353945]/50">
-              Enter ⏎
-            </div>
-          )}
-        </div>
-        <button
-          onClick={handleSendMessage}
-          disabled={isLoading || !inputMessage.trim()}
-          className={`p-3.5 rounded-full ${
-            isLoading || !inputMessage.trim()
-              ? "bg-[#353945] text-gray-500"
-              : "bg-gradient-to-r from-red-400 to-red-600 text-white hover:shadow-lg hover:shadow-red-500/30"
-          } transition-all`}
-        >
-          <IoSend size={20} />
-        </button>
-      </div>
-
-      <div className="flex items-center justify-center mt-2 sm:mt-3 gap-1.5">
-        <div className="h-0.5 w-5 bg-[#353945] rounded-full"></div>
-        <p className="text-xs text-gray-500 text-center">
-          Powered by RAG with Pinecone and Gemini API.{" "}
-          <span className="text-red-400">Chat history stored locally.</span>
-        </p>
-        <div className="h-0.5 w-5 bg-[#353945] rounded-full"></div>
       </div>
     </PageLayout>
   );

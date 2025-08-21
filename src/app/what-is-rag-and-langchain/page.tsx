@@ -1,6 +1,5 @@
 import React from "react";
 import PageLayout from "@/components/PageLayout";
-import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 
@@ -27,13 +26,171 @@ export default function WhatIsRagAndLangchain() {
       </h1>
 
       <div className="flex justify-center my-6">
-        <div className="relative w-full max-w-3xl h-64 md:h-80">
-          <Image
-            src="/images/RAG.svg"
-            alt="RAG System Architecture"
-            fill
-            className="object-contain"
-          />
+        <div className="p-4 bg-[#1c1f2a] rounded-lg shadow-lg border border-[#353945] max-w-3xl">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
+            {/* Document Processing */}
+            <div className="text-center p-3 bg-[#181a20]/50 rounded-lg">
+              <h4 className="font-semibold text-red-400 mb-2">
+                Document Processing
+              </h4>
+              <div className="flex flex-col gap-3 items-center">
+                <div className="w-16 h-16 bg-[#181a20] rounded-md flex items-center justify-center">
+                  <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M14 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z"
+                    />
+                  </svg>
+                </div>
+                <svg className="w-5 h-5 text-red-500" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M19 9l-7 7-7-7 1.4-1.4 5.6 5.6 5.6-5.6L19 9z"
+                  />
+                </svg>
+                <div className="flex gap-2">
+                  <div className="w-10 h-10 bg-[#181a20] rounded-md flex items-center justify-center">
+                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24">
+                      <path
+                        fill="currentColor"
+                        d="M3 3h18v2H3V3m0 4h18v2H3V7m0 4h8v2H3v-2m0 4h8v2H3v-2m0 4h8v2H3v-2z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="w-10 h-10 bg-[#181a20] rounded-md flex items-center justify-center">
+                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24">
+                      <path
+                        fill="currentColor"
+                        d="M3 3h18v2H3V3m0 4h18v2H3V7m0 4h8v2H3v-2m0 4h8v2H3v-2m0 4h8v2H3v-2z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <svg className="w-5 h-5 text-red-500" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M19 9l-7 7-7-7 1.4-1.4 5.6 5.6 5.6-5.6L19 9z"
+                  />
+                </svg>
+                <div className="flex gap-2">
+                  <div className="w-10 h-10 bg-[#181a20] rounded-md flex items-center justify-center">
+                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24">
+                      <path
+                        fill="currentColor"
+                        d="M12 3v3m0 12v3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M3 12h3m12 0h3M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"
+                      />
+                    </svg>
+                  </div>
+                  <div className="w-10 h-10 bg-[#181a20] rounded-md flex items-center justify-center">
+                    <svg className="w-6 h-6 text-red-500" viewBox="0 0 24 24">
+                      <path
+                        fill="currentColor"
+                        d="M12 3v3m0 12v3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M3 12h3m12 0h3M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Arrow Right */}
+            <div className="hidden md:block">
+              <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"
+                />
+              </svg>
+            </div>
+
+            {/* Down Arrow for Mobile */}
+            <div className="block md:hidden">
+              <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M11 4v12.17l-5.59-5.59L4 12l8 8 8-8-1.41-1.41L13 16.17V4h-2z"
+                />
+              </svg>
+            </div>
+
+            {/* Vector Database */}
+            <div className="text-center p-3 bg-[#181a20]/50 rounded-lg">
+              <h4 className="font-semibold text-red-400 mb-2">
+                Vector Database
+              </h4>
+              <div className="w-20 h-20 mx-auto bg-[#181a20] rounded-full flex items-center justify-center">
+                <svg className="w-10 h-10 text-red-500" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M12 3C7.58 3 4 4.79 4 7v10c0 2.21 3.59 4 8 4s8-1.79 8-4V7c0-2.21-3.58-4-8-4m0 2c3.31 0 6 1.34 6 3s-2.69 3-6 3-6-1.34-6-3 2.69-3 6-3M4 9c0 2.21 3.59 4 8 4s8-1.79 8-4v3c0 2.21-3.59 4-8 4s-8-1.79-8-4v-3m0 5c0 2.21 3.59 4 8 4s8-1.79 8-4v3c0 2.21-3.59 4-8 4s-8-1.79-8-4v-3z"
+                  />
+                </svg>
+              </div>
+              <div className="mt-2 p-2 bg-[#181a20] rounded-md">
+                <div className="text-xs text-gray-300">
+                  [0.1, 0.8, -0.2, ...]
+                </div>
+              </div>
+            </div>
+
+            {/* Arrow Right */}
+            <div className="hidden md:block">
+              <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"
+                />
+              </svg>
+            </div>
+
+            {/* Down Arrow for Mobile */}
+            <div className="block md:hidden">
+              <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24">
+                <path
+                  fill="currentColor"
+                  d="M11 4v12.17l-5.59-5.59L4 12l8 8 8-8-1.41-1.41L13 16.17V4h-2z"
+                />
+              </svg>
+            </div>
+
+            {/* Response Generation */}
+            <div className="text-center p-3 bg-[#181a20]/50 rounded-lg">
+              <h4 className="font-semibold text-red-400 mb-2">
+                Response Generation
+              </h4>
+              <div className="flex flex-col gap-3 items-center">
+                <div className="w-16 h-12 bg-[#181a20] rounded-md flex items-center justify-center">
+                  <div className="text-xs text-white">User Query</div>
+                </div>
+                <svg className="w-5 h-5 text-red-500" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M19 9l-7 7-7-7 1.4-1.4 5.6 5.6 5.6-5.6L19 9z"
+                  />
+                </svg>
+                <div className="w-16 h-12 bg-[#181a20] rounded-md flex items-center justify-center">
+                  <div className="text-xs text-white">Context Retrieval</div>
+                </div>
+                <svg className="w-5 h-5 text-red-500" viewBox="0 0 24 24">
+                  <path
+                    fill="currentColor"
+                    d="M19 9l-7 7-7-7 1.4-1.4 5.6 5.6 5.6-5.6L19 9z"
+                  />
+                </svg>
+                <div className="w-16 h-12 bg-[#181a20] rounded-md flex items-center justify-center">
+                  <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2Z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-4 font-bold text-white">
+            RAG System Architecture
+          </div>
         </div>
       </div>
 

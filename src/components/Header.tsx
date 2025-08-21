@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { RiBrainLine, RiMenuLine, RiCloseLine } from "react-icons/ri";
+import Image from "next/image";
+import { RiMenuLine, RiCloseLine } from "react-icons/ri";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -45,7 +46,7 @@ export default function Header() {
   ];
   const navItems: NavItem[] = [
     { label: "Chat with Dimpsy", href: "/chat-with-dimpsy", cta: true },
-    { label: "GeneralAI Agent", href: "/ai-agent", cta: true },
+    { label: "General AI Agent", href: "/ai-agent", cta: true },
     { label: "Website Builder AI Agent", href: "/website-builder", cta: true },
     { label: "RAG System", href: "/rag-system", cta: true },
   ];
@@ -75,9 +76,17 @@ export default function Header() {
           href="/"
           className="flex items-center gap-2 text-lg sm:text-xl font-bold"
         >
-          <RiBrainLine className="text-red-500 text-2xl" />
+          <div className="w-7 h-7 relative">
+            <Image
+              src="/brain-ai-solid.svg"
+              alt="GenAI Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-red-500">
-            GenAI Learning Hub
+            BrainLab
           </span>
         </Link>
 

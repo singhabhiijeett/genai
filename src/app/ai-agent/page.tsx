@@ -209,7 +209,7 @@ export default function AIAgent() {
       </div>
 
       <div
-        className="flex gap-2 sm:gap-3 items-center sticky bottom-0 z-10 rounded-xl border border-transparent bg-gradient-to-t from-[#0f1117] via-[#0f1117]/90 to-transparent pb-3 pt-2"
+        className="flex gap-2 sm:gap-3 items-center sticky bottom-0 z-10 rounded-xl border border-transparent bg-gradient-to-t  pb-3 pt-2"
         style={{
           paddingBottom: "calc(env(safe-area-inset-bottom, 0px) + 0.25rem)",
         }}
